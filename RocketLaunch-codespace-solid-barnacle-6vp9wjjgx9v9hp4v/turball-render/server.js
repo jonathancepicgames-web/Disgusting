@@ -195,6 +195,10 @@ async function sendGameIndex(req, res, next) {
       /<meta\s+name="api-base"\s+content="[^"]*"\s*\/?\s*>/i,
       `<meta name="api-base" content="${origin}">`,
     );
+    html = html.replace(
+      /<meta\s+name="game-version"\s+content="[^"]*"\s*\/?\s*>/i,
+      `<meta name="game-version" content="${ACTIVE_GAME_RELEASE}">`,
+    );
     html = html.replace(/src="assets\/app\/game-[^"]+\.js"/i, `src="assets/app/${GAME_ENTRY}"`);
     res.set('Cache-Control', 'no-store');
     res.type('html').send(html);
